@@ -8,37 +8,48 @@ import (
 
 func main() {
 	// Check if input is correct
-	if len(os.Args) != 3 {
-		fmt.Print("\nThis project requires the use of two arguments in order.\nCorrect format: go run . [STRING] [BANNER]\n\n")
-
-		return
-	}
-	rawInput := os.Args[1]
-	file := os.Args[2]
-	switch {
-	case file == "standard":
-		file = "standard.txt"
-	case file == "shadow":
-		file = "shadow.txt"
-	case file == "thinkertoy":
-		file = "thinkertoy.txt"
-	default:
-		fmt.Println("\nAvailable banner formats are: standard, shadow or thinkertoy.")
-		return
-	}
-	sourceFile, err := os.ReadFile(file)
+	var rawInput string
+	sourceFile, err := os.ReadFile("standard.txt")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-
+	ColorChosen := ""
+	indexofcolorwords := -1
+	lengthofcoloredwords := -1
+		outputErr := "\nUsage: go run . [OPTION] [STRING]\n\nExample: go run . --color=red <letters to be colored> something \n\n"
+	if len(os.Args) == 2 { // [STRING]
+		rawInput = os.Args[1]
+	} else if len(os.Args) == 3 { // [STRING] [BANNER]
+		rawInput = os.Args[2]
+		if os.Args[1][:8] == "--color=" {
+			ColorChosen = os.Args[1]
+		}
+		indexofcolorwords--
+	} else if len(os.Args) == 4 { // [OPTION] [STRING]
+		rawInput = os.Args[3]
+		if os.Args[1][:8] == "--color=" {
+			ColorChosen = os.Args[1]
+		} else {
+			fmt.Print(outputErr)
+			return
+		}
+	} else { // ERROR (FOR OUTPUT USE)
+		fmt.Print(outputErr)
+		return
+	}
+	if len(os.Args) == 4 { 
+	letterstobecolored := os.Args[2]
+	indexofcolorwords = asciiart.Index(rawInput, letterstobecolored)
+	lengthofcoloredwords = len(os.Args[2]) - 1
+}
 	// Main function: Splitting (split string based on newline position)
 	// ∟--> Sub function: Formatting (change input to allow use of newline & qoutation marks)
 	splitInput := asciiart.LineSplitter(rawInput, asciiart.InputFormatter)
 
-	for i := 2; i < 10; i++ {
+	
 	// Main function: Printing (printing the row of characters within input string)
 	// ∟--> Sub function: Parsing (parsing the data of the 8 rows to print sequentially)
-	fullRowData := asciiart.RowPrinter(splitInput, i, sourceFile, asciiart.RowParser)
-	asciiart.Color(fullRowData, ColorChosen)
+    asciiart.RowPrinter(splitInput, ColorChosen, indexofcolorwords, lengthofcoloredwords, sourceFile, asciiart.RowParser)
 }
+
