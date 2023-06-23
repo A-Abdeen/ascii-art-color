@@ -10,7 +10,7 @@ func RowPrinter(splitInput []string, ColorChosen string, indexofcolorwords int, 
 				for x, charRune := range singleLine { // to combine the prespective line of each char to the next
 					rowLocation := (((int(charRune) - 32) * 9) + i)
 					charRowData := f(sourceFile, rowLocation)
-					if (indexofcolorwords != -1 ) && (x >= indexofcolorwords && x <= (indexofcolorwords + lengthofcolorwords)){
+					if (indexofcolorwords != -1) && (x >= indexofcolorwords && x <= (indexofcolorwords+lengthofcolorwords)) {
 						fmt.Print(fullRowData)
 						Color(string(charRowData), ColorChosen, lengthofcolorwords)
 						charRowData = []byte{}
@@ -21,8 +21,8 @@ func RowPrinter(splitInput []string, ColorChosen string, indexofcolorwords int, 
 				if indexofcolorwords == -2 {
 					Color(fullRowData, ColorChosen, indexofcolorwords)
 				} else {
-				fmt.Println(fullRowData)
-			}
+					fmt.Println(fullRowData)
+				}
 				fullRowData = ""
 			}
 		} else {

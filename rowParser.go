@@ -3,9 +3,9 @@ package asciiart
 func RowParser(sourceFile []byte, rowLocation int) []byte {
 	charRowData := []byte{}
 	count := 1
-	lineNumber := 1 
+	lineNumber := 1
 	for i := 0; i >= 0; i++ {
-		if sourceFile[i] == 10 {   // if new line found increase count
+		if sourceFile[i] == 10 { // if new line found increase count
 			count++
 		}
 		if count == rowLocation {
