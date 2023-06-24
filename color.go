@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func Color(charRowData string, ColorChosen string, indexofcolorwords int) {
+func Color(charRowData string, ColorChosen string, indexOfColorWords int) {
 	color := "\033[0m"
 	if ColorChosen == "--color=black" {
 		color = "\033[30m"
@@ -33,7 +33,7 @@ func Color(charRowData string, ColorChosen string, indexofcolorwords int) {
 	if ColorChosen == "--color=orange" {
 		color = "\033[91m"
 	}
-	if indexofcolorwords == -2 {
+	if indexOfColorWords == -2 {
 		fmt.Println(string(color), charRowData)
 	} else {
 		fmt.Print(string(color), charRowData)

@@ -2,7 +2,7 @@ package asciiart
 
 import "fmt"
 
-func RowPrinter(splitInput []string, ColorChosen string, indexofcolorwords int, lengthofcolorwords int, sourceFile []byte, f func([]byte, int) []byte) {
+func RowPrinter(splitInput []string, ColorChosen string, indexOfColorWords int, lengthOfColorWords int, sourceFile []byte, f func([]byte, int) []byte) {
 	fullRowData := ""
 	for _, singleLine := range splitInput { // to print one line at a time
 		if singleLine != "" {
@@ -10,16 +10,16 @@ func RowPrinter(splitInput []string, ColorChosen string, indexofcolorwords int, 
 				for x, charRune := range singleLine { // to combine the prespective line of each char to the next
 					rowLocation := (((int(charRune) - 32) * 9) + i)
 					charRowData := f(sourceFile, rowLocation)
-					if (indexofcolorwords != -1) && (x >= indexofcolorwords && x <= (indexofcolorwords+lengthofcolorwords)) {
+					if (indexOfColorWords != -1) && (x >= indexOfColorWords && x <= (indexOfColorWords+lengthOfColorWords)) {
 						fmt.Print(fullRowData)
-						Color(string(charRowData), ColorChosen, lengthofcolorwords)
+						Color(string(charRowData), ColorChosen, lengthOfColorWords)
 						charRowData = []byte{}
 						fullRowData = ""
 					}
 					fullRowData = fullRowData + string(charRowData)
 				}
-				if indexofcolorwords == -2 {
-					Color(fullRowData, ColorChosen, indexofcolorwords)
+				if indexOfColorWords == -2 {
+					Color(fullRowData, ColorChosen, indexOfColorWords)
 				} else {
 					fmt.Println(fullRowData)
 				}
