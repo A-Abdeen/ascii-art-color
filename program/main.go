@@ -21,7 +21,7 @@ func main() {
 
 	if len(os.Args) == 2 { // [STRING]
 		rawInput = os.Args[1]
-	} else if len(os.Args) == 3 { // [STRING] [BANNER]
+	} else if len(os.Args) == 3 { // [OPTION] [STRING]
 		rawInput = os.Args[2]
 		if len(os.Args[1]) <= 7 {
 			fmt.Print(outputErr)
@@ -34,7 +34,7 @@ func main() {
 			return
 		}
 		indexofColorWords-- // if indexofColorWords is -2 the whole word well be colored
-	} else if len(os.Args) == 4 { // [OPTION] [STRING]
+	} else if len(os.Args) == 4 { // [OPTION] [LETTERS TO BE COLORED] [STRING]
 		rawInput = os.Args[3]
 		if len(os.Args[1]) <= 7 {
 			fmt.Print(outputErr)
