@@ -18,14 +18,15 @@ func main() {
 	indexofColorWords := -1
 	lengthOfColorWords := -1
 	outputErr := "\nUsage: go run . [OPTION] [STRING]\n\nExample: go run . --color=red <letters to be colored> something \n\n"
-	if len(os.Args[1]) <= 7 {
-		fmt.Print(outputErr)
-			return
-	}
+
 	if len(os.Args) == 2 { // [STRING]
 		rawInput = os.Args[1]
 	} else if len(os.Args) == 3 { // [STRING] [BANNER]
 		rawInput = os.Args[2]
+		if len(os.Args[1]) <= 7 {
+			fmt.Print(outputErr)
+			return
+		}
 		if os.Args[1][:8] == "--color=" {
 			ColorChosen = os.Args[1]
 		} else {
@@ -35,6 +36,10 @@ func main() {
 		indexofColorWords-- // if indexofColorWords is -2 the whole word well be colored
 	} else if len(os.Args) == 4 { // [OPTION] [STRING]
 		rawInput = os.Args[3]
+		if len(os.Args[1]) <= 7 {
+			fmt.Print(outputErr)
+			return
+		}
 		if os.Args[1][:8] == "--color=" {
 			ColorChosen = os.Args[1]
 		} else {
@@ -50,6 +55,7 @@ func main() {
 		indexofColorWords = asciiart.Index(rawInput, letterstobecolored)
 		lengthOfColorWords = len(os.Args[2]) - 1
 	}
+
 	// Main function: Splitting (split string based on newline position)
 	// ∟--> Sub function: Formatting (change input to allow use of newline & qoutation marks)
 	splitInput := asciiart.LineSplitter(rawInput, asciiart.InputFormatter)
