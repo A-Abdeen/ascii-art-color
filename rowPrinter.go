@@ -28,5 +28,6 @@ func RowPrinter(splitInput []string, ColorChosen string, indexOfColorWords int, 
 		} else {
 			fmt.Print("\n")
 		}
+		indexOfColorWords = -1
 	}
 }

@@ -50,7 +50,6 @@ func main() {
 		indexofColorWords = asciiart.Index(rawInput, letterstobecolored)
 		lengthOfColorWords = len(os.Args[2]) - 1
 	}
-	fmt.Println(len(os.Args[3]))
 	// Main function: Splitting (split string based on newline position)
 	// ∟--> Sub function: Formatting (change input to allow use of newline & qoutation marks)
 	splitInput := asciiart.LineSplitter(rawInput, asciiart.InputFormatter)
