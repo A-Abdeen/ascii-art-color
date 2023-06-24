@@ -18,6 +18,10 @@ func main() {
 	indexofcolorwords := -1
 	lengthofcolorwords := -1
 	outputErr := "\nUsage: go run . [OPTION] [STRING]\n\nExample: go run . --color=red <letters to be colored> something \n\n"
+	if len(os.Args[1]) <= 7 {
+		fmt.Print(outputErr)
+			return
+	}
 	if len(os.Args) == 2 { // [STRING]
 		rawInput = os.Args[1]
 	} else if len(os.Args) == 3 { // [STRING] [BANNER]
